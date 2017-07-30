@@ -36,8 +36,11 @@ void setup() {
   // Set the patterns
   lx.setPatterns(new LXPattern[] {
     
-    new IteratorTestPattern(lx),
-    new BaseHuePattern(lx),  
+    new Interference(lx),
+    //new Fountain(lx),
+    new BistroLights(lx),
+    //new IteratorTestPattern(lx),
+    //new BaseHuePattern(lx),  
     
   });
   
