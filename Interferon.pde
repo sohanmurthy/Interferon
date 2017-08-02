@@ -37,22 +37,23 @@ void setup() {
   lx.setPatterns(new LXPattern[] {
     
     new Interference(lx),
-    new BistroLights(lx),
     new Sequencer(lx),
+    new BistroLights(lx),
+    
     //new IteratorTestPattern(lx),
     //new BaseHuePattern(lx),
 
   });
 
   //Sets the transition type
-  final LXTransition multiply = new MultiplyTransition(lx).setDuration(15*SECONDS);
+  final LXTransition multiply = new MultiplyTransition(lx).setDuration(6.66*MINUTES);
 
   for (LXPattern p : lx.getPatterns()) {
     p.setTransition(multiply);
   }
 
   //Auto transitions patterns after a set period of time
-  lx.enableAutoTransition(10*MINUTES);
+  lx.enableAutoTransition(37*SECONDS);
 
   //Output to LEDs
   output = buildOutput();

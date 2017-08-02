@@ -59,7 +59,7 @@ class BistroLights extends LXPattern{
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(3*MINUTES);
+    lx.cycleBaseHue(9.6*MINUTES);
   }
 
 }
@@ -122,7 +122,7 @@ class Interference extends LXPattern {
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(8*MINUTES);
+    lx.cycleBaseHue(11.2*MINUTES);
   }
 
 }
@@ -173,7 +173,7 @@ class Sequencer extends LXPattern {
       if (!touched) {
         init();
       }
-      lx.cycleBaseHue(3.3*MINUTES);
+      lx.cycleBaseHue(3.7*MINUTES);
     }
 
     private void init() {
