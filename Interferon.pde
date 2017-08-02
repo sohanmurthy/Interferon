@@ -8,6 +8,9 @@ INTERFERON is a work-in-progress LED art installation.
 This program controls 320 individually addressable LEDs
 through a variety of procedurally generated patterns.
 
+TODO: tweak velocity and acceleration of "sequencer"
+pattern. might be going too fast?
+
 *********************************************************/
 
 import ddf.minim.*;
@@ -74,5 +77,5 @@ void setup() {
 
 
 void draw() {
-  background(#292929);
+  background(#000000);
 }
