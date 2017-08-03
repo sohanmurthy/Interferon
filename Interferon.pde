@@ -38,7 +38,7 @@ void setup() {
     
     new Interference(lx),
     new Sequencer(lx),
-    new BistroLights(lx),
+    new ColorSwatches(lx),
     
     //new IteratorTestPattern(lx),
     //new BaseHuePattern(lx),

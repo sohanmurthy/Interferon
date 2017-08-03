@@ -1,12 +1,12 @@
-/*
+/**************
 
-Bistro Lights
+Color Swatches
 
-*/
+***************/
 
-class BistroLights extends LXPattern{
+class ColorSwatches extends LXPattern{
 
-  class BistroLight extends LXLayer {
+  class Swatch extends LXLayer {
 
     private final SinLFO sync = new SinLFO(6*SECONDS, 18*SECONDS, 38*SECONDS);
     private final SinLFO bright = new SinLFO(0,100, sync);
@@ -17,7 +17,7 @@ class BistroLights extends LXPattern{
     private int fPixel;
     private float hOffset;
 
-    BistroLight(LX lx, int s, int f, float o){
+    Swatch(LX lx, int s, int f, float o){
       super(lx);
       sPixel = s;
       fPixel = f;
@@ -44,15 +44,15 @@ class BistroLights extends LXPattern{
 
   }
 
-  BistroLights(LX lx){
+  ColorSwatches(LX lx){
    super(lx);
+   //number of lights in a color swatch
     final int section = 8;
-
    for(int s = 0; s <= model.size-section; s+=section){
      if((s+section) % (section*2) == 0){
-     addLayer(new BistroLight(lx, s, s+section, 67));
+     addLayer(new Swatch(lx, s, s+section, 67));
      }else{
-       addLayer(new BistroLight(lx, s, s+section, 0));
+       addLayer(new Swatch(lx, s, s+section, 0));
      }  
    }
   }
@@ -66,11 +66,11 @@ class BistroLights extends LXPattern{
 
 
 
-/*
+/************
 
 Interference
 
-*/
+*************/
 
 class Interference extends LXPattern {
 
@@ -128,10 +128,13 @@ class Interference extends LXPattern {
 }
 
 
+/************
+
+Sequencer
+
+*************/
 
 class Sequencer extends LXPattern {
-  
-
   
   final float size = 3;
   final float wth = 6;
@@ -141,13 +144,11 @@ class Sequencer extends LXPattern {
  
   class Sequence extends LXLayer {
     
-      private final SinLFO jerk = new SinLFO(-1.2, 0.2, 18*SECONDS);
-      //private final float gravity = jerk.getValuef();
-    
+    private final SinLFO jerk = new SinLFO(-1.2, 0.2, 18*SECONDS);
+
     private final Accelerator xPos = new Accelerator(0, 0, 0);
     private final Accelerator yPos = new Accelerator(0, 0, jerk);
      
-
     Sequence(LX lx) {
       super(lx);
       addModulator(jerk.randomBasis()).start();
@@ -184,19 +185,15 @@ class Sequencer extends LXPattern {
     }
   }
   
- 
-
   Sequencer(LX lx) {
     super(lx);
     for (int i = 0; i < num; ++i) {
       addLayer(new Sequence(lx));
     }
-
   }
 
   public void run(double deltaMs) {
     setColors(#000000);
   }
     
-  
 }
