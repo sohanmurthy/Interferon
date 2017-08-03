@@ -141,7 +141,7 @@ class Sequencer extends LXPattern {
  
   class Sequence extends LXLayer {
     
-      private final SinLFO jerk = new SinLFO(-1, 0.2, 18*SECONDS);
+      private final SinLFO jerk = new SinLFO(-1.2, 0.2, 18*SECONDS);
       //private final float gravity = jerk.getValuef();
     
     private final Accelerator xPos = new Accelerator(0, 0, 0);
