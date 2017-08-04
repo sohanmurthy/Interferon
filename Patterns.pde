@@ -83,7 +83,7 @@ class Interference extends LXPattern {
         private final TriangleLFO cy = new TriangleLFO(model.yMin, model.yMax, random(2*MINUTES+sync.getValuef(),3*MINUTES+sync.getValuef()));
         private final SawLFO move = new SawLFO(TWO_PI, 0, speed);
         
-        private final TriangleLFO hue = new TriangleLFO(0,180, sync);
+        private final TriangleLFO hue = new TriangleLFO(0,106, sync);
 
         private final float cx;
         private final int slope = 25;
@@ -102,8 +102,9 @@ class Interference extends LXPattern {
          public void run(double deltaMs) {
            for(LXPoint p : model.points) {
            float dx = (dist(p.x, p.y, cx, cy.getValuef()))/ slope;
+           float ds = (dist(p.x, p.y, cx, cy.getValuef()))/ (slope/1.1);
            float b = 16 + 16 * sin(dx * tight.getValuef() + move.getValuef());
-           float s = b;
+           float s = 16 + 16 * sin(ds * tight.getValuef() + move.getValuef());;
              blendColor(p.index, LXColor.hsb(
              lx.getBaseHuef()+hue.getValuef(),
              s,
@@ -122,7 +123,7 @@ class Interference extends LXPattern {
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(11.2*MINUTES);
+    lx.cycleBaseHue(9.5*MINUTES);
   }
 
 }
