@@ -59,7 +59,7 @@ void setup() {
   output = buildOutput();
 
   // Adds UI elements -- COMMENT all of this out if running on Linux in a headless environment
-  size(1280, 800, P3D);
+  size(300, 400, P3D);
   lx.ui.addLayer(
     new UI3dContext(lx.ui)
     .setCenter(model.cx, model.cy, model.cz)
