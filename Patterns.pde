@@ -46,7 +46,7 @@ class ColorSwatches extends LXPattern{
 
   ColorSwatches(LX lx){
    super(lx);
-   //number of lights in a color swatch
+   //size of each swatch in pixels
     final int section = 8;
    for(int s = 0; s <= model.size-section; s+=section){
      if((s+section) % (section*2) == 0){
@@ -59,7 +59,7 @@ class ColorSwatches extends LXPattern{
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(9.6*MINUTES);
+    lx.cycleBaseHue(3.37*MINUTES);
   }
 
 }
@@ -123,7 +123,7 @@ class Interference extends LXPattern {
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(9.5*MINUTES);
+    lx.cycleBaseHue(6.5*MINUTES);
   }
 
 }
@@ -175,7 +175,7 @@ class Sequencer extends LXPattern {
       if (!touched) {
         init();
       }
-      lx.cycleBaseHue(3.7*MINUTES);
+      lx.cycleBaseHue(9.6*MINUTES);
     }
 
     private void init() {

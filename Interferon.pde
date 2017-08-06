@@ -46,20 +46,20 @@ void setup() {
   });
 
   //Sets the transition type
-  final LXTransition multiply = new MultiplyTransition(lx).setDuration(6.66*MINUTES);
+  final LXTransition multiply = new MultiplyTransition(lx).setDuration(13.34*MINUTES);
 
   for (LXPattern p : lx.getPatterns()) {
     p.setTransition(multiply);
   }
 
   //Auto transitions patterns after a set period of time
-  lx.enableAutoTransition(37*SECONDS);
+  lx.enableAutoTransition(1*SECONDS);
 
   //Output to LEDs
   output = buildOutput();
 
   // Adds UI elements -- COMMENT all of this out if running on Linux in a headless environment
-  size(400, 600, P3D);
+  size(1280, 800, P3D);
   lx.ui.addLayer(
     new UI3dContext(lx.ui)
     .setCenter(model.cx, model.cy, model.cz)
