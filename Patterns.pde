@@ -10,8 +10,8 @@ class ColorSwatches extends LXPattern{
 
     private final SinLFO sync = new SinLFO(6*SECONDS, 18*SECONDS, 38*SECONDS);
     private final SinLFO bright = new SinLFO(0,100, sync);
-    private final SinLFO sat = new SinLFO(20,45, sync);
-    private final TriangleLFO hueValue = new TriangleLFO(0, 77, sync);
+    private final SinLFO sat = new SinLFO(10,35, sync);
+    private final TriangleLFO hueValue = new TriangleLFO(0, 67, sync);
 
     private int sPixel;
     private int fPixel;
@@ -50,7 +50,7 @@ class ColorSwatches extends LXPattern{
     final int section = 8;
    for(int s = 0; s <= model.size-section; s+=section){
      if((s+section) % (section*2) == 0){
-     addLayer(new Swatch(lx, s, s+section, 67));
+     addLayer(new Swatch(lx, s, s+section, 77));
      }else{
        addLayer(new Swatch(lx, s, s+section, 0));
      }  
@@ -138,14 +138,15 @@ Sequencer
 class Sequencer extends LXPattern {
   
   final float size = 3;
-  final float wth = 6;
+  
   final float vLow = 2.8;
   final float vHigh = 3.8;
-  final int num = 18;
+  final int num = 36;
  
   class Sequence extends LXLayer {
     
-    private final SinLFO jerk = new SinLFO(-1.2, 0.2, 18*SECONDS);
+    private final float wth = random(2,6);
+    private final SinLFO jerk = new SinLFO(-1.22, 0.2, 18*SECONDS);
 
     private final Accelerator xPos = new Accelerator(0, 0, 0);
     private final Accelerator yPos = new Accelerator(0, 0, jerk);
@@ -195,6 +196,7 @@ class Sequencer extends LXPattern {
 
   public void run(double deltaMs) {
     setColors(#000000);
+    
   }
     
 }
