@@ -22,18 +22,11 @@ P3LX lx;
 LXOutput output;
 UI3dComponent pointCloud;
 
-
-
 void setup() {
 
-  // Create the model, which describes where the light points are
   model = new Model();
-
-
-  // Create the P3LX engine
   lx = new P3LX(this, model);
 
-  // Set the patterns
   lx.setPatterns(new LXPattern[] {
     
     new Interference(lx),
@@ -45,17 +38,14 @@ void setup() {
 
   });
 
-  //Sets the transition type
   final LXTransition multiply = new MultiplyTransition(lx).setDuration(13.34*MINUTES);
 
   for (LXPattern p : lx.getPatterns()) {
     p.setTransition(multiply);
   }
 
-  //Auto transitions patterns after a set period of time
   lx.enableAutoTransition(1*SECONDS);
 
-  //Output to LEDs
   output = buildOutput();
 
   // Adds UI elements -- COMMENT all of this out if running on Linux in a headless environment
@@ -68,7 +58,6 @@ void setup() {
     .setPhi(PI/64)
     .addComponent(pointCloud = new UIPointCloud(lx, model).setPointSize(4))
   );
-
 
 }
 

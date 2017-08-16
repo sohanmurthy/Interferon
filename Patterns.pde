@@ -10,7 +10,7 @@ class ColorSwatches extends LXPattern{
 
     private final SinLFO sync = new SinLFO(6*SECONDS, 18*SECONDS, 38*SECONDS);
     private final SinLFO bright = new SinLFO(0,100, sync);
-    private final SinLFO sat = new SinLFO(10,35, sync);
+    private final SinLFO sat = new SinLFO(45,75, sync);
     private final TriangleLFO hueValue = new TriangleLFO(0, 67, sync);
 
     private int sPixel;
@@ -104,7 +104,7 @@ class Interference extends LXPattern {
            float dx = (dist(p.x, p.y, cx, cy.getValuef()))/ slope;
            float ds = (dist(p.x, p.y, cx, cy.getValuef()))/ (slope/1.1);
            float b = 16 + 16 * sin(dx * tight.getValuef() + move.getValuef());
-           float s = 16 + 16 * sin(ds * tight.getValuef() + move.getValuef());;
+           float s = 50 + 50 * sin(ds * tight.getValuef() + move.getValuef());;
              blendColor(p.index, LXColor.hsb(
              lx.getBaseHuef()+hue.getValuef(),
              s,
@@ -169,7 +169,7 @@ class Sequencer extends LXPattern {
           touched = true;
           blendColor(p.index, LXColor.hsb(
             (lx.getBaseHuef() + (dist(p.x, p.y, model.cx, model.yMin) / model.xRange) * 180) % 360,
-            35, 
+            55, 
             b), LXColor.Blend.LIGHTEST);
         }
       }
