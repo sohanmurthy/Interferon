@@ -141,12 +141,12 @@ class Sequencer extends LXPattern {
   
   final float vLow = 2.8;
   final float vHigh = 3.8;
-  final int num = 120;
+  final int num = 36;
  
   class Sequence extends LXLayer {
     
-    private final float wth = random(2,4);
-    private final SinLFO jerk = new SinLFO(-0.4, 0.2, 18*SECONDS);
+    private final float wth = random(2,6);
+    private final SinLFO jerk = new SinLFO(-1.22, 0.2, 18*SECONDS);
 
     private final Accelerator xPos = new Accelerator(0, 0, 0);
     private final Accelerator yPos = new Accelerator(0, 0, jerk);
@@ -164,13 +164,13 @@ class Sequencer extends LXPattern {
       for (LXPoint p : model.points) {
           float dx = abs(p.x - xPos.getValuef());
           float dy = abs(p.y/wth - yPos.getValuef());
-          float b = 25 - (25/size) * max(dx, dy);
+          float b = 100 - (100/size) * max(dx, dy);
         if (b > 0) {
           touched = true;
           blendColor(p.index, LXColor.hsb(
             (lx.getBaseHuef() + (dist(p.x, p.y, model.cx, model.yMin) / model.xRange) * 180) % 360,
             55, 
-            b), LXColor.Blend.ADD);
+            b), LXColor.Blend.LIGHTEST);
         }
       }
       if (!touched) {

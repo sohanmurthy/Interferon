@@ -29,9 +29,9 @@ void setup() {
 
   lx.setPatterns(new LXPattern[] {
     
-    //new Interference(lx),
+    new Interference(lx),
     new Sequencer(lx),
-    //new ColorSwatches(lx),
+    new ColorSwatches(lx),
     
     //new IteratorTestPattern(lx),
     //new BaseHuePattern(lx),
