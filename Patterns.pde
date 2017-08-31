@@ -8,8 +8,8 @@ class ColorSwatches extends LXPattern{
 
   class Swatch extends LXLayer {
 
-    private final SinLFO sync = new SinLFO(6*SECONDS, 18*SECONDS, 38*SECONDS);
-    private final SinLFO bright = new SinLFO(0,100, sync);
+    private final SinLFO sync = new SinLFO(12*SECONDS, 36*SECONDS, 76*SECONDS);
+    private final SinLFO bright = new SinLFO(-25,100, sync);
     private final SinLFO sat = new SinLFO(45,75, sync);
     private final TriangleLFO hueValue = new TriangleLFO(0, 67, sync);
 
@@ -30,7 +30,7 @@ class ColorSwatches extends LXPattern{
 
     public void run(double deltaMs) {
       float s = sat.getValuef();
-      float b = bright.getValuef();
+      float b = constrain(bright.getValuef(),0,100);
 
       for(int i = sPixel; i < fPixel; i++){
         blendColor(i, LXColor.hsb(
