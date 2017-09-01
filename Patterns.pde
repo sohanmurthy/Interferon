@@ -8,10 +8,10 @@ class ColorSwatches extends LXPattern{
 
   class Swatch extends LXLayer {
 
-    private final SinLFO sync = new SinLFO(12*SECONDS, 36*SECONDS, 76*SECONDS);
-    private final SinLFO bright = new SinLFO(-25,100, sync);
+    private final SinLFO sync = new SinLFO(10*SECONDS, 28*SECONDS, 76*SECONDS);
+    private final SinLFO bright = new SinLFO(-80,100, sync);
     private final SinLFO sat = new SinLFO(45,75, sync);
-    private final TriangleLFO hueValue = new TriangleLFO(0, 67, sync);
+    private final TriangleLFO hueValue = new TriangleLFO(0, 29, sync);
 
     private int sPixel;
     private int fPixel;
@@ -50,7 +50,7 @@ class ColorSwatches extends LXPattern{
     final int section = 8;
    for(int s = 0; s <= model.size-section; s+=section){
      if((s+section) % (section*2) == 0){
-     addLayer(new Swatch(lx, s, s+section, 77));
+     addLayer(new Swatch(lx, s, s+section, 12));
      }else{
        addLayer(new Swatch(lx, s, s+section, 0));
      }  
