@@ -28,10 +28,12 @@ void setup() {
   lx = new P3LX(this, model);
 
   lx.setPatterns(new LXPattern[] {
-    
     new Interference(lx),
-    new Sequencer(lx),
-    new ColorSwatches(lx),
+    //new Fountain(lx),
+   new Aurora(lx),
+    
+    //new Sequencer(lx),
+    //new ColorSwatches(lx),
     
     //new IteratorTestPattern(lx),
     //new BaseHuePattern(lx),
@@ -63,5 +65,5 @@ void setup() {
 
 
 void draw() {
-  background(#000000);
+  background(#131313);
 }
