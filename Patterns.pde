@@ -1,71 +1,3 @@
-/**************
-
-Color Swatches
-
-***************/
-
-class ColorSwatches extends LXPattern{
-
-  class Swatch extends LXLayer {
-
-    private final SinLFO sync = new SinLFO(10*SECONDS, 28*SECONDS, 76*SECONDS);
-    private final SinLFO bright = new SinLFO(-80,100, sync);
-    private final SinLFO sat = new SinLFO(45,75, sync);
-    private final TriangleLFO hueValue = new TriangleLFO(0, 29, sync);
-
-    private int sPixel;
-    private int fPixel;
-    private float hOffset;
-
-    Swatch(LX lx, int s, int f, float o){
-      super(lx);
-      sPixel = s;
-      fPixel = f;
-      hOffset = o;
-      addModulator(sync.randomBasis()).start();
-      addModulator(bright.randomBasis()).start();
-      addModulator(sat.randomBasis()).start();
-      addModulator(hueValue.randomBasis()).start();
-    }
-
-    public void run(double deltaMs) {
-      float s = sat.getValuef();
-      float b = constrain(bright.getValuef(),0,100);
-
-      for(int i = sPixel; i < fPixel; i++){
-        blendColor(i, LXColor.hsb(
-          lx.getBaseHuef() + hueValue.getValuef() + hOffset,
-          //lx.getBaseHuef() + hOffset,
-          s,
-          b
-          ), LXColor.Blend.LIGHTEST);
-        }
-    }
-
-  }
-
-  ColorSwatches(LX lx){
-   super(lx);
-   //size of each swatch in pixels
-    final int section = 8;
-   for(int s = 0; s <= model.size-section; s+=section){
-     if((s+section) % (section*2) == 0){
-     addLayer(new Swatch(lx, s, s+section, 12));
-     }else{
-       addLayer(new Swatch(lx, s, s+section, 0));
-     }  
-   }
-  }
-
-  public void run(double deltaMs) {
-    setColors(#000000);
-    lx.cycleBaseHue(3.37*MINUTES);
-  }
-
-}
-
-
-
 /************
 
 Interference
@@ -128,81 +60,6 @@ class Interference extends LXPattern {
 
 }
 
-
-/************
-
-Sequencer
-
-*************/
-
-class Sequencer extends LXPattern {
-  
-  final float size = 3;
-  
-  final float vLow = 2.8;
-  final float vHigh = 3.8;
-  final int num = 6;
- 
-  class Sequence extends LXLayer {
-    
-    private final float wth = random(2,6);
-    private final SinLFO jerk = new SinLFO(-1.22, 0.2, 18*SECONDS);
-
-    private final Accelerator xPos = new Accelerator(0, 0, 0);
-    private final Accelerator yPos = new Accelerator(0, 0, jerk);
-     
-    Sequence(LX lx) {
-      super(lx);
-      addModulator(jerk.randomBasis()).start();
-      addModulator(xPos).start();
-      addModulator(yPos).start();
-      init();
-    }
-
-    public void run(double deltaMs) {
-      boolean touched = false;
-      for (LXPoint p : model.points) {
-          float dx = abs(p.x - xPos.getValuef());
-          float dy = abs(p.y/wth - yPos.getValuef());
-          float b = 100 - (100/size) * max(dx, dy);
-        if (b > 0) {
-          touched = true;
-          blendColor(p.index, LXColor.hsb(
-            (lx.getBaseHuef() + (dist(p.x, p.y, model.cx, model.yMin) / model.xRange) * 180) % 360,
-            55, 
-            b), LXColor.Blend.LIGHTEST);
-        }
-      }
-      if (!touched) {
-        init();
-      }
-      lx.cycleBaseHue(9.6*MINUTES);
-    }
-
-    private void init() {
-      xPos.setValue(random(model.xMin-5.25, model.xMax+5.25));
-      yPos.setValue(random(model.yMin-3, model.yMin-3));  
-      yPos.setVelocity(random(vLow, vHigh));
-      
-    }
-  }
-  
-  Sequencer(LX lx) {
-    super(lx);
-    for (int i = 0; i < num; ++i) {
-      addLayer(new Sequence(lx));
-    }
-  }
-
-  public void run(double deltaMs) {
-    setColors(#000000);
-    
-  }
-    
-}
-
-
-
 /******************
 
 Aurora
@@ -241,8 +98,8 @@ class Aurora extends LXPattern {
     public void run(double deltaMs) {
       for (LXPoint p : model.points) {
         
-        float vy1 = model.yRange/4 * sin(off1.getValuef() + (p.x - model.cx) / wth1.getValuef());
-        float vy2 = model.yRange/4 * sin(off2.getValuef() + (p.x - model.cx) / wth2.getValuef());
+        float vy1 = model.yRange/5 * sin(off1.getValuef() + (p.x - model.cx) / wth1.getValuef());
+        float vy2 = model.yRange/5 * sin(off2.getValuef() + (p.x - model.cx) / wth2.getValuef());
         float vy = model.ay + vy1 + vy2;
         
         float thickness = 16 + 9 * sin(off3.getValuef() + (p.x - model.cx) / wth3.getValuef());
@@ -271,76 +128,68 @@ class Aurora extends LXPattern {
   }
 }
 
-/*************************
+/**************
 
-Fountain
+Color Swatches
 
-**************************/
+***************/
 
+class ColorSwatches extends LXPattern{
 
-class Fountain extends LXPattern {
-  
-  final float size = 8;
-  final float wth = 10;
-  final float vLow = 2.8;
-  final float vHigh = 4.2; 
-  final float gravity = -1;
-  final int num = 3;
- 
-  class Jet extends LXLayer {
-    
-    private final Accelerator xPos = new Accelerator(0, 0, 0);
-    private final Accelerator yPos = new Accelerator(0, 0, gravity);
-     
+  class Swatch extends LXLayer {
 
-    Jet(LX lx) {
+    private final SinLFO sync = new SinLFO(6*SECONDS, 10*SECONDS, 22*SECONDS);
+    private final SinLFO bright = new SinLFO(-70,70, sync);
+    private final SinLFO sat = new SinLFO(45,75, sync);
+    private final TriangleLFO hueValue = new TriangleLFO(0, 55, sync);
+
+    private int sPixel;
+    private int fPixel;
+    private float hOffset;
+
+    Swatch(LX lx, int s, int f, float o){
       super(lx);
-      addModulator(xPos).start();
-      addModulator(yPos).start();
-      init();
+      sPixel = s;
+      fPixel = f;
+      hOffset = o;
+      addModulator(sync.randomBasis()).start();
+      addModulator(bright.randomBasis()).start();
+      addModulator(sat.randomBasis()).start();
+      addModulator(hueValue.randomBasis()).start();
     }
 
     public void run(double deltaMs) {
-      boolean touched = false;
-      for (LXPoint p : model.points) {
-          float dx = abs(p.x - xPos.getValuef());
-          float dy = abs(p.y/wth - yPos.getValuef());
-          float b = 100 - (100/size) * max(dx, dy);
-        if (b > 0) {
-          touched = true;
-          blendColor(p.index, LXColor.hsb(
-            (lx.getBaseHuef() + (dist(p.x, p.y, model.cx, model.yMin) / model.xRange) * 180) % 360,
-            45, 
-            b), LXColor.Blend.LIGHTEST);
+      float s = sat.getValuef();
+      float b = constrain(bright.getValuef(),0,100);
+
+      for(int i = sPixel; i < fPixel; i++){
+        blendColor(i, LXColor.hsb(
+          lx.getBaseHuef() + hueValue.getValuef() + hOffset,
+          //lx.getBaseHuef() + hOffset,
+          s,
+          b
+          ), LXColor.Blend.LIGHTEST);
         }
-      }
-      if (!touched) {
-        init();
-      }
-      
-      lx.cycleBaseHue(3.3*MINUTES);
     }
 
-    private void init() {
-      xPos.setValue(random(model.xMin, model.xMax));
-      yPos.setValue(random(model.yMin-7, model.yMin-7));  
-      yPos.setVelocity(random(vLow, vHigh));
-      
-    }
   }
-  
- 
 
-  Fountain(LX lx) {
-    super(lx);
-    for (int i = 0; i < num; ++i) {
-      addLayer(new Jet(lx));
-    }
+  ColorSwatches(LX lx){
+   super(lx);
+   //size of each swatch in pixels
+    final int section = 8;
+   for(int s = 0; s <= model.size-section; s+=section){
+     if((s+section) % (section*2) == 0){
+     addLayer(new Swatch(lx, s, s+section, 22));
+     }else{
+       addLayer(new Swatch(lx, s, s+section, 0));
+     }  
+   }
   }
 
   public void run(double deltaMs) {
     setColors(#000000);
+    lx.cycleBaseHue(3.37*MINUTES);
   }
-    
-  
+
 }

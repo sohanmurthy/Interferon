@@ -28,19 +28,14 @@ void setup() {
   lx = new P3LX(this, model);
 
   lx.setPatterns(new LXPattern[] {
-    new Interference(lx),
-    //new Fountain(lx),
+   
+   new Interference(lx), 
    new Aurora(lx),
-    
-    //new Sequencer(lx),
-    //new ColorSwatches(lx),
-    
-    //new IteratorTestPattern(lx),
-    //new BaseHuePattern(lx),
-
+   new ColorSwatches(lx),
+   
   });
 
-  final LXTransition multiply = new MultiplyTransition(lx).setDuration(13.34*MINUTES);
+  final LXTransition multiply = new MultiplyTransition(lx).setDuration(10.2*MINUTES);
 
   for (LXPattern p : lx.getPatterns()) {
     p.setTransition(multiply);
