@@ -1,14 +1,15 @@
-/********************************************************
+/**********************************************************
 
 INTERFERON
 Sohan Murthy
 2017
 
-INTERFERON is a work-in-progress LED art installation.
-This program controls 320 individually addressable LEDs
-through a variety of procedurally generated patterns.
+INTERFERON is an LED art installation located in a private
+residence in San Francisco. This program controls 320
+individually addressable LEDs, which oscillates between
+abstract and concrete interference patterns. 
 
-*********************************************************/
+***********************************************************/
 
 import ddf.minim.*;
 
