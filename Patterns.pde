@@ -15,7 +15,7 @@ class Interference extends LXPattern {
         private final TriangleLFO cy = new TriangleLFO(model.yMin, model.yMax, random(2*MINUTES+sync.getValuef(),3*MINUTES+sync.getValuef()));
         private final SawLFO move = new SawLFO(TWO_PI, 0, speed);
         
-        private final TriangleLFO hue = new TriangleLFO(0,106, sync);
+        private final TriangleLFO hue = new TriangleLFO(0,88, sync);
 
         private final float cx;
         private final int slope = 25;
@@ -35,10 +35,11 @@ class Interference extends LXPattern {
            for(LXPoint p : model.points) {
            float dx = (dist(p.x, p.y, cx, cy.getValuef()))/ slope;
            float ds = (dist(p.x, p.y, cx, cy.getValuef()))/ (slope/1.1);
-           float b = 16 + 16 * sin(dx * tight.getValuef() + move.getValuef());
-           float s = 50 + 50 * sin(ds * tight.getValuef() + move.getValuef());;
+           float b = 15 + 15 * sin(dx * tight.getValuef() + move.getValuef());
+           float s = 50 + 50 * sin(ds * tight.getValuef()/1.3 + move.getValuef());;
              blendColor(p.index, LXColor.hsb(
              lx.getBaseHuef()+hue.getValuef(),
+             
              s,
              b
              ), LXColor.Blend.ADD);
@@ -102,7 +103,7 @@ class Aurora extends LXPattern {
         float vy2 = model.yRange/5 * sin(off2.getValuef() + (p.x - model.cx) / wth2.getValuef());
         float vy = model.ay + vy1 + vy2;
         
-        float thickness = 16 + 9 * sin(off3.getValuef() + (p.x - model.cx) / wth3.getValuef());
+        float thickness = 16 + 7 * sin(off3.getValuef() + (p.x - model.cx) / wth3.getValuef());
         float ts = thickness/1.2;
 
         addColor(p.index, LXColor.hsb(
