@@ -35,7 +35,7 @@ class Interference extends LXPattern {
            for(LXPoint p : model.points) {
            float dx = (dist(p.x, p.y, cx, cy.getValuef()))/ slope;
            float ds = (dist(p.x, p.y, cx, cy.getValuef()))/ (slope/1.1);
-           float b = 15 + 15 * sin(dx * tight.getValuef() + move.getValuef());
+           float b = 12 + 12 * sin(dx * tight.getValuef() + move.getValuef());
            float s = 50 + 50 * sin(ds * tight.getValuef()/1.3 + move.getValuef());;
              blendColor(p.index, LXColor.hsb(
              lx.getBaseHuef()+hue.getValuef(),
@@ -56,7 +56,7 @@ class Interference extends LXPattern {
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(6.5*MINUTES);
+    lx.cycleBaseHue(7.86*MINUTES);
   }
 
 }
@@ -125,7 +125,7 @@ class Aurora extends LXPattern {
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(5.42*MINUTES);
+    lx.cycleBaseHue(6.34*MINUTES);
   }
 }
 
@@ -190,7 +190,7 @@ class ColorSwatches extends LXPattern{
 
   public void run(double deltaMs) {
     setColors(#000000);
-    lx.cycleBaseHue(3.37*MINUTES);
+    lx.cycleBaseHue(3.93*MINUTES);
   }
 
 }

@@ -6,8 +6,10 @@ Sohan Murthy
 
 INTERFERON is an LED art installation located in a private
 residence in San Francisco. This program controls 320
-individually addressable LEDs, which oscillates between
-abstract and concrete interference patterns. 
+individually addressable LEDs, which mimics interference
+patterns we see everywhere in nature: ripples in a pond,
+wheat fields blowing in the wind, and waves colliding on
+the beach.
 
 ***********************************************************/
 
