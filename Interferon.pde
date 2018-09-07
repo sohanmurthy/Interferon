@@ -32,19 +32,19 @@ void setup() {
 
   lx.setPatterns(new LXPattern[] {
    
-   new Interference(lx), 
+   new Interference(lx),
    new Aurora(lx),
    new ColorSwatches(lx),
-   
+
   });
 
-  final LXTransition multiply = new MultiplyTransition(lx).setDuration(10.2*MINUTES);
+  final LXTransition multiply = new MultiplyTransition(lx).setDuration(7.2*MINUTES);
 
   for (LXPattern p : lx.getPatterns()) {
     p.setTransition(multiply);
   }
 
-  lx.enableAutoTransition(1*SECONDS);
+  lx.enableAutoTransition(3*MINUTES);
 
   output = buildOutput();
 
