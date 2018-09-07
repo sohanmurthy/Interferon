@@ -4,7 +4,7 @@ INTERFERON
 <br>
 *2017*
 
-<img src="https://github.com/sohanmurthy/Interferon/blob/master/img/interferon.jpg" width = 100%%>
+<img src="https://github.com/sohanmurthy/Interferon/blob/master/img/interferon.jpg" width = 60%%>
 
 INTERFERON is an LED art installation located in a private residence in San Francisco, CA. This program controls 320 individually addressable LEDs, and mimics interference patterns we see everywhere in nature: ripples in a pond, wheat fields blowing in the wind, and waves colliding on the beach.
 
