@@ -10,6 +10,8 @@ INTERFERON is an LED art installation located in a private residence in Oakland,
 
 The system consists of a Raspberry Pi 3, [FadeCandy controller](https://www.adafruit.com/product/1689), [RGB-123 FadeCandy breakout board](http://rgb-123.com/product/fadecandy-breakout/), and WS2812 LEDs.
 
+[Video](https://www.youtube.com/watch?v=Irz1Y6pQNCU)
+
 ### Installation:
 
 1. Download [Processing 3](https://processing.org/download/?processing)
